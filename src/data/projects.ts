@@ -525,9 +525,13 @@ export const projects: Project[] = [
     ],
     stack: ['React', 'TypeScript', 'Vite', 'React Router', 'TanStack Query', 'Tailwind CSS', 'Recharts', 'Supabase', 'Vitest'],
     filters: ['React', 'Supabase'],
-    links: {},
+    links: {
+      github: 'https://github.com/ArnaldoHilarioConstantinoDosSantos/folga',
+      demo: 'https://arnaldohilarioconstantinodossantos.github.io/folga/',
+    },
     screenshots: [],
-    disclosure: PRIVATE_REPO,
+    disclosure:
+      'Código aberto e demonstração publicada, em modo local: entre com qualquer e-mail e senha. O diagrama é uma ilustração da arquitetura.',
     details: {
       context: [
         'O Folga mostra quanto entra, quanto sai, para onde o dinheiro vai, quanto sobra e o que já está comprometido nos próximos meses.',
