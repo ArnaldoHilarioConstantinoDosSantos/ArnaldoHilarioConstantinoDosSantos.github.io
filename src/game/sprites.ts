@@ -7,40 +7,51 @@ export interface Sprite {
 }
 
 const devPalette = {
-  H: '#5a3418', // cabelo
-  S: '#f2c08c', // pele
+  H: '#221915', // cabelo cacheado
+  h: '#5e4130', // reflexo dos cachos
+  S: '#d9a47c', // pele
+  s: '#b9825c', // sombra da pele
+  G: '#c9ccd8', // armação dos óculos
+  L: '#d6ccf2', // lente
   K: '#1a1a1a',
-  G: '#d9dcec', // fone de ouvido
-  B: '#3d7bff', // moletom
   W: '#ffffff',
-  P: '#27305e', // calça
-  O: '#ff8b3d', // tênis
+  C: '#2b2f3c', // camisa social preta
+  c: '#4a5163', // gola, botões e punho dobrado
+  P: '#1d2030', // calça
+  O: '#ecebf2', // tênis
 }
 
 const devTop = [
-  '....HHHHH...',
-  '...HHHHHHH..',
-  '..GHHSSSSS..',
-  '..GHSKSSKS..',
-  '..GSSSSSSS..',
-  '...SSSKKS...',
-  '....SSSSS...',
-  '...BBBBBBB..',
-  '..BBBWBBBBB.',
-  '.SBBBWBBBBS.',
-  '.SBBBBBBBBS.',
-  '...BBBBBBB..',
+  '....HhHHhH....',
+  '..HhHHHhHHhH..',
+  '.HHhHHhHHHhHH.',
+  '.hHHHSSSSSHhH.',
+  'HHhHSSSSSSShHH',
+  'HhHGLKGLKGSHhH',
+  'HHHSGGSGGSSHHH',
+  'hHHSSSSsSSSHHh',
+  'HhHSSKWWKSSHhH',
+  '.HHhSSSSSSSHH.',
+  '.hHH.SSSS.HhH.',
+  '..CCCcSScCCC..',
+  '.CCCCCCcCCCCC.',
+  '.CCCCCCcCCCCC.',
+  '.cCCCCCcCCCCc.',
+  '.SCCCCCcCCCCS.',
+  '.SCCCCCcCCCCS.',
+  '..SPPPPPPPPS..',
+  '..PPPPPPPPPP..',
 ]
 
-/** Personagem: dev de moletom e fone, em dois quadros de caminhada. */
+/** Personagem: dev de cabelo cacheado, óculos redondos e camisa social, em dois quadros de caminhada. */
 export const devStand: Sprite = {
   palette: devPalette,
-  rows: [...devTop, '...PPPPPPP..', '...PPP.PPP..', '...PP...PP..', '..OOO...OOO.'],
+  rows: [...devTop, '..PPPP..PPPP..', '..PPP....PPP..', '.OOOO....OOOO.'],
 }
 
 export const devStep: Sprite = {
   palette: devPalette,
-  rows: [...devTop, '...PPPPPPP..', '....PPPPP...', '....PPPP....', '...OOOOO....'],
+  rows: [...devTop, '...PPPPPPPP...', '....PPPPPP....', '...OOOOOO.....'],
 }
 
 export const coin: Sprite = {
