@@ -3,8 +3,8 @@ import { Reveal } from './Reveal'
 
 interface SectionProps {
   id: string
-  /** Número da fase, como "1-2". */
-  level: string
+  /** Número da seção, como "02". */
+  number: string
   eyebrow: string
   title: string
   description?: string
@@ -12,19 +12,20 @@ interface SectionProps {
   className?: string
 }
 
-export function Section({ id, level, eyebrow, title, description, children, className = '' }: SectionProps) {
+export function Section({ id, number, eyebrow, title, description, children, className = '' }: SectionProps) {
   return (
-    <section id={id} aria-labelledby={`${id}-titulo`} className={`py-20 sm:py-24 ${className}`}>
+    <section id={id} aria-labelledby={`${id}-titulo`} className={`py-16 sm:py-24 ${className}`}>
       <div className="mx-auto w-full max-w-6xl px-5 sm:px-8">
         <Reveal className="mb-10 max-w-3xl sm:mb-14">
-          <p className="label mb-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-accent">
-            <span className="bg-accent px-2 py-1 text-on-accent">Fase {level}</span>
-            {eyebrow}
+          <p className="eyebrow mb-4 flex items-center gap-3 text-accent">
+            <span>{number}</span>
+            <span aria-hidden="true" className="h-px w-8 bg-line-strong" />
+            <span className="text-muted">{eyebrow}</span>
           </p>
-          <h2 id={`${id}-titulo`} className="pixel-shadow text-lg sm:text-2xl">
+          <h2 id={`${id}-titulo`} className="text-gradient text-3xl sm:text-[2.75rem]">
             {title}
           </h2>
-          {description && <p className="mt-4 text-lg leading-relaxed text-muted">{description}</p>}
+          {description && <p className="mt-5 text-lg leading-relaxed text-muted">{description}</p>}
         </Reveal>
         {children}
       </div>

@@ -1,6 +1,6 @@
 # Portfólio — Arnaldo Hilario
 
-Site pessoal de portfólio com visual de jogo de plataforma 8-bit: apresentação, tecnologias, projetos com página de detalhes, experiência, formação e contato.
+Site pessoal de portfólio com visual escuro e minimalista: apresentação, tecnologias, projetos com página de detalhes, experiência, formação e contato.
 
 **Stack:** React 19 · TypeScript · Vite · Tailwind CSS 4 · Motion · Lucide · React Router.
 
@@ -36,11 +36,9 @@ src/
   types/              tipos do conteúdo
   components/
     ui/                 Button, Card, Section, Reveal, Tag, ícones de marca
-    layout/             Header, Hud (placar), Footer, BackToTop, ScrollManager
-    game/               sprites em pixel, blocos e cenário do topo
+    layout/             Header, Footer, BackToTop, ScrollManager
     projects/           ProjectCard, ProjectVisual (diagrama ilustrativo)
     sections/           uma seção da página inicial por arquivo
-  game/               estado do jogo (moedas) e arte dos sprites
   hooks/              tema, seção ativa, copiar, título/descrição da página
   pages/              Home, ProjectPage (/projetos/:slug), NotFound
   index.css           tokens de cor (temas escuro e claro) e estilos de base
@@ -84,15 +82,16 @@ Depois de saber o endereço final, defina `VITE_SITE_URL` (no arquivo `.env` ou 
 
 ## O que o site faz
 
-- Mundo de noite (padrão) e de dia, lembrado entre visitas e aplicado antes da primeira pintura.
-- Placar no topo: pontos sobem com a rolagem, moedas vêm dos blocos do cenário e a fase é a seção atual.
-- Arte em pixel própria (`src/game/sprites.ts`), desenhada como texto: cada caractere é um pixel.
+- Tema escuro e claro: na primeira visita segue o do sistema; a escolha do visitante é lembrada e aplicada antes da primeira pintura.
+- Barra de progresso de leitura no topo e menu flutuante com a seção ativa destacada.
+- Cards com brilho que acompanha o ponteiro, entradas suaves ao rolar e faixa de tecnologias em movimento (tudo desligado para quem pede menos movimento no sistema).
 - Menu com indicador da seção ativa, rolagem suave e versão para celular.
 - Filtros de projetos por categoria e por tecnologia.
 - Página de detalhes por projeto, com navegação anterior/próximo.
 - Copiar e-mail, abrir o cliente de e-mail e baixar o currículo.
 - Botão de voltar ao topo.
-- Título e descrição por página, Open Graph, `lang="pt-BR"`.
+- Título, descrição e endereço canônico por página, Open Graph, dados estruturados (`Person`), `lang="pt-BR"`.
+- `robots.txt` e `sitemap.xml` gerados no build (o sitemap só sai com `VITE_SITE_URL` definido).
 - Navegação por teclado, link "Pular para o conteúdo", foco visível.
 - Animações desligadas para quem pede movimento reduzido no sistema.
 

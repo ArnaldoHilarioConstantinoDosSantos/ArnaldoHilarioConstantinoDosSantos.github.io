@@ -9,8 +9,10 @@
       content="Portfólio de Arnaldo Hilario, Desenvolvedor Full Stack. React, TypeScript, Node.js e PostgreSQL em sistemas de gestão, integrações de pagamento Pix e plataformas multiempresa."
     />
     <meta name="author" content="Arnaldo Hilario" />
-    <meta name="theme-color" content="#0a0d24" />
+    <meta name="theme-color" content="#08090b" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="canonical" href="%VITE_SITE_URL%/" />
 
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pt_BR" />
@@ -25,11 +27,32 @@
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <!-- Aplica o tema salvo antes da primeira pintura, para a página não piscar. -->
+    <!-- Dados estruturados: ajudam buscadores a mostrar nome, cargo e perfis. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Arnaldo Hilario",
+        "jobTitle": "Desenvolvedor Full Stack",
+        "url": "%VITE_SITE_URL%/",
+        "email": "mailto:arnaldoohilarioo@gmail.com",
+        "address": { "@type": "PostalAddress", "addressLocality": "Paulista", "addressRegion": "PE", "addressCountry": "BR" },
+        "worksFor": { "@type": "Organization", "name": "Ceasa/PE" },
+        "alumniOf": { "@type": "CollegeOrUniversity", "name": "UNIFG — Centro Universitário dos Guararapes" },
+        "knowsAbout": ["React", "TypeScript", "Node.js", "PostgreSQL", "Pix", "APIs REST"],
+        "sameAs": ["https://www.linkedin.com/in/arnaldo-hilario", "https://github.com/ArnaldoHilarioConstantinoDosSantos"]
+      }
+    </script>
+
+    <!--
+      Aplica o tema antes da primeira pintura, para a página não piscar:
+      o escolhido pelo visitante ou, sem escolha salva, o do sistema.
+    -->
     <script>
       try {
         var t = localStorage.getItem('portfolio:theme')
-        if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t
+        if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+        document.documentElement.dataset.theme = t
       } catch (e) {}
     </script>
   </head>

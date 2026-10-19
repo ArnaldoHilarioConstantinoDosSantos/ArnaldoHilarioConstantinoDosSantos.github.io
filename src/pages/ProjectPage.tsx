@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowUpRight, Check, Info } from 'lucide-react'
+import { ArrowLeft, ArrowRight, ArrowUpRight, Check, Info } from 'lucide-react'
 import type { CSSProperties, ReactNode } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { ProjectVisual } from '../components/projects/ProjectVisual'
@@ -21,9 +21,9 @@ interface BlockProps {
 function Block({ number, title, children }: BlockProps) {
   return (
     <Reveal>
-      <section className="grid gap-4 border-t-4 border-dotted border-line-strong py-10 sm:grid-cols-[14rem_1fr] sm:gap-8 sm:py-12">
-        <h2 className="flex items-baseline gap-3 text-xs sm:flex-col sm:gap-2 sm:text-sm">
-          <span className="label text-(--tone)">{number}</span>
+      <section className="grid gap-4 border-t border-line py-10 sm:grid-cols-[14rem_1fr] sm:gap-8 sm:py-14">
+        <h2 className="flex items-baseline gap-3 text-xl sm:flex-col sm:gap-2">
+          <span className="font-mono text-sm font-medium text-(--tone)">{number}</span>
           {title}
         </h2>
         <div className="min-w-0">{children}</div>
@@ -65,27 +65,27 @@ function ProjectDetails({ project }: { project: Project }) {
 
   return (
     <article
-      className="mx-auto w-full max-w-6xl px-5 pb-20 pt-32 sm:px-8 sm:pt-36"
+      className="relative mx-auto w-full max-w-6xl px-5 pb-20 pt-32 sm:px-8 sm:pt-40"
       style={{ '--tone': accentVar[project.accent] } as CSSProperties}
     >
-      <Link to="/#projetos" className="label inline-flex items-center gap-2 text-muted hover:text-fg">
+      <Link to="/#projetos" className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-fg">
         <ArrowLeft className="size-4" aria-hidden="true" />
         Todos os projetos
       </Link>
 
       <header className="mt-8 max-w-3xl">
-        <p className="label flex flex-wrap items-center gap-x-3 gap-y-1 text-subtle">
-          <span className="bg-(--tone) px-2 py-1 text-on-accent">Fase {String(index + 1).padStart(2, '0')}</span>
+        <p className="eyebrow flex flex-wrap items-center gap-x-2.5 gap-y-1 text-subtle">
           <span className="text-(--tone)">{categoryLabels[project.category]}</span>
+          <span aria-hidden="true">·</span>
           <span>{project.origin}</span>
         </p>
-        <h1 className="pixel-shadow mt-5 text-xl sm:text-3xl">{project.name}</h1>
-        <p className="mt-2 text-subtle">{project.kind}</p>
+        <h1 className="text-gradient mt-4 text-4xl tracking-[-0.035em] sm:text-6xl">{project.name}</h1>
+        <p className="mt-3 text-subtle">{project.kind}</p>
         <p className="mt-4 text-xl leading-relaxed text-muted">{project.tagline}</p>
 
-        <div className="mt-6 flex flex-wrap items-center gap-4">
-          <span className="label inline-flex items-center gap-2 border-2 border-(--tone) px-3 py-2 text-fg">
-            <span className="size-2 bg-(--tone)" aria-hidden="true" />
+        <div className="mt-7 flex flex-wrap items-center gap-3">
+          <span className="inline-flex h-11 items-center gap-2 rounded-full border border-line-strong px-4 text-sm text-fg">
+            <span className="size-2 rounded-full bg-(--tone)" aria-hidden="true" />
             {project.status}
           </span>
           {project.links.github && (
@@ -101,7 +101,7 @@ function ProjectDetails({ project }: { project: Project }) {
         </div>
       </header>
 
-      <div className="mt-12">
+      <div className="mt-14">
         <Block number="01" title="Contexto">
           <Paragraphs items={details.context} />
         </Block>
@@ -126,7 +126,7 @@ function ProjectDetails({ project }: { project: Project }) {
           <ul className="mt-6 max-w-3xl space-y-2.5">
             {details.architectureNotes.map((note) => (
               <li key={note} className="flex gap-3 leading-relaxed text-muted">
-                <span className="mt-2.5 size-1.5 shrink-0 bg-(--tone)" aria-hidden="true" />
+                <span className="mt-[0.7rem] size-1 shrink-0 rounded-full bg-(--tone)" aria-hidden="true" />
                 {note}
               </li>
             ))}
@@ -138,11 +138,11 @@ function ProjectDetails({ project }: { project: Project }) {
         </Block>
 
         <Block number="06" title="Desafios técnicos">
-          <ul className="grid gap-5 md:grid-cols-2">
+          <ul className="grid gap-4 md:grid-cols-2">
             {details.challenges.map((challenge) => (
               <li key={challenge.title} className="card p-5">
-                <h3 className="text-xs leading-relaxed">{challenge.title}</h3>
-                <p className="mt-2 leading-relaxed text-muted">{challenge.description}</p>
+                <h3 className="text-base">{challenge.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted">{challenge.description}</p>
               </li>
             ))}
           </ul>
@@ -162,27 +162,33 @@ function ProjectDetails({ project }: { project: Project }) {
                     alt={screenshot.alt}
                     loading="lazy"
                     decoding="async"
-                    className="w-full border-4 border-ink"
+                    className="w-full rounded-xl border border-line"
                   />
                 </li>
               ))}
             </ul>
           )}
-          <p className="flex max-w-3xl gap-3 border-2 border-line-strong bg-surface p-5 leading-relaxed text-muted">
+          <p className="flex max-w-3xl gap-3 rounded-xl border border-line bg-surface p-5 text-sm leading-relaxed text-muted">
             <Info className="mt-0.5 size-4 shrink-0 text-(--tone)" aria-hidden="true" />
             {project.screenshots.length > 0 ? 'Capturas reais do sistema.' : project.disclosure}
           </p>
         </Block>
       </div>
 
-      <nav aria-label="Outros projetos" className="mt-4 grid gap-5 border-t-4 border-dotted border-line-strong pt-10 sm:grid-cols-2">
-        <Link to={`/projetos/${previous.slug}`} className="card card-interactive block p-5">
-          <span className="label text-subtle">◀ Fase anterior</span>
-          <span className="mt-2 block text-lg font-semibold">{previous.name}</span>
+      <nav aria-label="Outros projetos" className="mt-4 grid gap-4 border-t border-line pt-10 sm:grid-cols-2">
+        <Link to={`/projetos/${previous.slug}`} className="card card-interactive group block p-5">
+          <span className="inline-flex items-center gap-1.5 text-sm text-subtle">
+            <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-1" aria-hidden="true" />
+            Projeto anterior
+          </span>
+          <span className="mt-2 block text-lg font-semibold tracking-tight">{previous.name}</span>
         </Link>
-        <Link to={`/projetos/${next.slug}`} className="card card-interactive block p-5 text-right">
-          <span className="label text-subtle">Próxima fase ▶</span>
-          <span className="mt-2 block text-lg font-semibold">{next.name}</span>
+        <Link to={`/projetos/${next.slug}`} className="card card-interactive group block p-5 text-right">
+          <span className="inline-flex items-center gap-1.5 text-sm text-subtle">
+            Próximo projeto
+            <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+          </span>
+          <span className="mt-2 block text-lg font-semibold tracking-tight">{next.name}</span>
         </Link>
       </nav>
     </article>
