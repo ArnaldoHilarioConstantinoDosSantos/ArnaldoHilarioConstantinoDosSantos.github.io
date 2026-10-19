@@ -38,7 +38,16 @@ export const projects: Project[] = [
     stack: ['TypeScript', 'NestJS', 'Prisma', 'PostgreSQL', 'React', 'Vite', 'Tailwind CSS', 'TanStack Query', 'Docker'],
     filters: ['React', 'Node.js', 'PostgreSQL'],
     links: {},
-    screenshots: [],
+    screenshots: [
+      {
+        src: '/projetos/central-de-chamados/1.webp',
+        alt: 'Dashboard da Central de Chamados com chamados por status, custo do período, tempos médios, SLA cumprido e gráfico de chamados por dia',
+      },
+      {
+        src: '/projetos/central-de-chamados/2.webp',
+        alt: 'Tela de relatórios com os modelos operacional, para o cliente e interno, filtros por organização e exportação em PDF, Excel e CSV',
+      },
+    ],
     disclosure: PRIVATE_REPO,
     details: {
       context: [
@@ -282,7 +291,16 @@ export const projects: Project[] = [
     stack: ['Next.js', 'React', 'TypeScript', 'Drizzle ORM', 'PostgreSQL', 'Tailwind CSS', 'Zod', 'Vitest'],
     filters: ['React', 'Node.js', 'PostgreSQL'],
     links: {},
-    screenshots: [],
+    screenshots: [
+      {
+        src: '/projetos/gestao-de-fornecimento/1.webp',
+        alt: 'Relatórios da Gestão de Fornecimento com DRE simplificada, fluxo de caixa e ponto de equilíbrio do mês',
+      },
+      {
+        src: '/projetos/gestao-de-fornecimento/2.webp',
+        alt: 'Contas a receber com total em aberto, valor vencido, inadimplência e saldo por cliente',
+      },
+    ],
     disclosure: PRIVATE_REPO,
     details: {
       context: [
@@ -365,7 +383,20 @@ export const projects: Project[] = [
     stack: ['React', 'TypeScript', 'Vite', 'Supabase', 'PostgreSQL', 'TanStack Query', 'Tailwind CSS', 'React Router'],
     filters: ['React', 'Supabase', 'PostgreSQL'],
     links: {},
-    screenshots: [],
+    screenshots: [
+      {
+        src: '/projetos/ninho/1.webp',
+        alt: 'Dashboard do Ninho com o valor já gasto frente ao orçamento, progresso da casa, parcelas e gastos por cômodo',
+      },
+      {
+        src: '/projetos/ninho/2.webp',
+        alt: 'Lista de itens que faltam comprar, com cômodo, categoria, prioridade, situação e preço estimado',
+      },
+      {
+        src: '/projetos/ninho/3.webp',
+        alt: 'Cômodos do imóvel com valor planejado, valor gasto e progresso de compras de cada um',
+      },
+    ],
     disclosure: PRIVATE_REPO,
     details: {
       context: [
@@ -529,7 +560,20 @@ export const projects: Project[] = [
       github: 'https://github.com/ArnaldoHilarioConstantinoDosSantos/folga',
       demo: 'https://arnaldohilarioconstantinodossantos.github.io/folga/',
     },
-    screenshots: [],
+    screenshots: [
+      {
+        src: '/projetos/folga/1.webp',
+        alt: 'Dashboard do Folga com saldo do mês, receitas, despesas, economia, evolução financeira e distribuição da renda',
+      },
+      {
+        src: '/projetos/folga/2.webp',
+        alt: 'Tela de cartões com limite total utilizado e, para cada cartão, fechamento, vencimento e fatura aberta',
+      },
+      {
+        src: '/projetos/folga/3.webp',
+        alt: 'Relatórios do Folga com receita e despesa total, economia, categoria com maior gasto e gastos fixos e variáveis',
+      },
+    ],
     disclosure:
       'Código aberto e demonstração publicada, em modo local: entre com qualquer e-mail e senha. O diagrama é uma ilustração da arquitetura.',
     details: {

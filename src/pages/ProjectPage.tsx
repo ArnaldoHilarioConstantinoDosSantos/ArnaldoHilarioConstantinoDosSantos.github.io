@@ -1,5 +1,5 @@
 import { ArrowLeft, ArrowRight, ArrowUpRight, Check, Info } from 'lucide-react'
-import type { CSSProperties, ReactNode } from 'react'
+import { useRef, useState, type CSSProperties, type ReactNode } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { ProjectVisual } from '../components/projects/ProjectVisual'
 import { GithubIcon } from '../components/ui/BrandIcons'
@@ -9,7 +9,7 @@ import { Reveal } from '../components/ui/Reveal'
 import { Tag } from '../components/ui/Tag'
 import { categoryLabels, getProject, projects } from '../data/projects'
 import { useDocumentMeta } from '../hooks/useDocumentMeta'
-import type { Project } from '../types'
+import type { Project, ProjectScreenshot } from '../types'
 import { NotFound } from './NotFound'
 
 interface BlockProps {
@@ -52,6 +52,52 @@ function CheckList({ items, columns = false }: { items: string[]; columns?: bool
         </li>
       ))}
     </ul>
+  )
+}
+
+/** Capturas em grade (a primeira em largura total); um clique abre a imagem ampliada. */
+function Screenshots({ items }: { items: ProjectScreenshot[] }) {
+  const dialog = useRef<HTMLDialogElement>(null)
+  const [open, setOpen] = useState<ProjectScreenshot | null>(null)
+
+  const show = (screenshot: ProjectScreenshot) => {
+    setOpen(screenshot)
+    dialog.current?.showModal()
+  }
+
+  return (
+    <>
+      <ul className="mb-6 grid gap-5 md:grid-cols-2">
+        {items.map((screenshot, index) => (
+          <li key={screenshot.src} className={index === 0 ? 'md:col-span-2' : undefined}>
+            <button
+              type="button"
+              onClick={() => show(screenshot)}
+              aria-label={`Ampliar: ${screenshot.alt}`}
+              className="group block w-full cursor-zoom-in overflow-hidden rounded-xl border border-line"
+            >
+              <img
+                src={screenshot.src}
+                alt={screenshot.alt}
+                loading="lazy"
+                decoding="async"
+                className="w-full transition-transform duration-500 group-hover:scale-[1.015]"
+              />
+            </button>
+          </li>
+        ))}
+      </ul>
+
+      {/* Clique fora da imagem ou Esc fecham. */}
+      <dialog
+        ref={dialog}
+        onClick={() => dialog.current?.close()}
+        onClose={() => setOpen(null)}
+        className="m-auto max-h-[92vh] max-w-[min(92vw,1600px)] cursor-zoom-out overflow-hidden rounded-xl border border-line-strong bg-transparent p-0 backdrop:bg-black/80 backdrop:backdrop-blur-sm"
+      >
+        {open && <img src={open.src} alt={open.alt} className="max-h-[92vh] w-auto" />}
+      </dialog>
+    </>
   )
 }
 
@@ -153,24 +199,10 @@ function ProjectDetails({ project }: { project: Project }) {
         </Block>
 
         <Block number="08" title="Imagens do sistema">
-          {project.screenshots.length > 0 && (
-            <ul className="mb-6 grid gap-5 md:grid-cols-2">
-              {project.screenshots.map((screenshot) => (
-                <li key={screenshot.src}>
-                  <img
-                    src={screenshot.src}
-                    alt={screenshot.alt}
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full rounded-xl border border-line"
-                  />
-                </li>
-              ))}
-            </ul>
-          )}
+          {project.screenshots.length > 0 && <Screenshots items={project.screenshots} />}
           <p className="flex max-w-3xl gap-3 rounded-xl border border-line bg-surface p-5 text-sm leading-relaxed text-muted">
             <Info className="mt-0.5 size-4 shrink-0 text-(--tone)" aria-hidden="true" />
-            {project.screenshots.length > 0 ? 'Capturas reais do sistema.' : project.disclosure}
+            {project.screenshots.length > 0 ? 'Capturas reais do sistema, com dados de demonstração.' : project.disclosure}
           </p>
         </Block>
       </div>
